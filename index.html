@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<h1> Farting counter of 2024 </h1>
+</head>    
+
+<body style="background-color: saddlebrown;">
+
+<audio id="fartsound"> 
+    <source src="fart.mp3" type="audio/mpeg">
+</audio>
+
+<p> Chyanne's farts:</p>
+<p id="counterChyanne"> 0 </p>
+
+<p>
+    <button type="button" onclick="clickChy()">Fart</button>
+</p>
+
+
+
+<p> Jared's farts:</p>
+<p id="counterJared"> 0 </p>
+
+<p>
+    <button type="button" onclick="clickJared()">Fart</button>
+</p>
+
+</body>
+
+
+
+<script>
+const sheetId = '1D25i_R42My9AqTiCUK2JqNQvU73ITZxxzI7JvHPs1v8';
+const apiKey = 'AIzaSyDeV0XwbzUBoFuiLkG4DOJIIKjTmbSAnlE';
+
+const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
+
+const range = 'Sheet1!A1';
+
+const newValue = 'New Value';
+
+// URL for updating a cell in the Google Sheets API
+const updateUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+// Data to send in the request body
+const requestData = {
+  values: [[newValue]],
+};
+
+// Make a PUT request to update the cell
+fetch(updateUrl, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(requestData),
+})
+  .then(response => response.json())
+  .then(data => {
+    // Process the response data
+    console.log(data);
+  })
+  .catch(error => {
+    console.error('Error updating cell:', error);
+  });
+
+
+var fartaudio = document.getElementById("fartsound");
+
+var Chy = 0;
+var Jared = 0;
+
+
+    function clickChy() {
+        Chy += 1;
+        document.getElementById("counterChyanne").innerText = Chy;
+        fartaudio.play();
+    } 
+
+    function clickJared() {
+        Jared += 1;
+        document.getElementById("counterJared").innerText = Jared;
+        fartaudio.play();
+    } 
+
+    
+    
+</script>
+
+</html>
