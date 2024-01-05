@@ -34,73 +34,17 @@
 <script>
 const sheetId = '1D25i_R42My9AqTiCUK2JqNQvU73ITZxxzI7JvHPs1v8';
 const apiKey = 'AIzaSyDeV0XwbzUBoFuiLkG4DOJIIKjTmbSAnlE';
-const clientId = '244037381733-f422cebelbe9vc1q69oft74at4fibu2v.apps.googleusercontent.com';
-const clientSecret = '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';
-const redirectUri = 'https://crunchylemon12.github.io/fart/';
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbwTZXJTvLdv2JFlrH-ukABay9TaRJZQYVCa3orNYutsFywp5QKVi0rrjKkz1hR_wN6U/exec';
+const url = `${webAppUrl}?key=${apiKey}`;
 
-const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
-const authUrl = `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=https://www.googleapis.com/auth/spreadsheets`;
-
-var range = 'Sheet1!A1';
-
-var newValue = 'New Value';
-
-// Open a new window for user authentication
-const authWindow = window.open(authUrl, '_blank');
-
-// Handle the authorization response
-window.addEventListener('message', event => {
-  if (event.origin === window.location.origin) {
-    // Close the authentication window
-    authWindow.close();
-
-    // Use the authorization code to obtain an access token
-    const authorizationCode = event.data.code;
-
-    // Exchange the authorization code for an access token
-    fetch('https://oauth2.googleapis.com/token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: `code=${authorizationCode}&client_id=${clientId}&client_secret=${clientSecret}&redirect_uri=${redirectUri}&grant_type=authorization_code`,
-    })
-      .then(response => response.json())
-      .then(tokenData => {
-        const accessToken = tokenData.access_token;
-
-        // Use the access token to update the cell
-        const updateUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?valueInputOption=RAW`;
-
-        // Data to send in the request body
-        const requestData = {
-          values: [[newValue]],
-        };
-
-        // Make a PUT request to update the cell
-        fetch(updateUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestData),
-        })
-          .then(response => response.json())
-          .then(data => {
-            // Process the response data
-            console.log(data);
-          })
-          .catch(error => {
-            console.error('Error updating cell:', error);
-          });
-      })
-      .catch(error => {
-        console.error('Error obtaining access token:', error);
-      });
-  }
-});
-
+fetch(url)
+  .then(response => response.text())
+  .then(data => {
+    console.log(data); // The response from your web app
+  })
+  .catch(error => {
+    console.error('Error updating cell:', error);
+  });
 
 var fartaudio = document.getElementById("fartsound");
 
