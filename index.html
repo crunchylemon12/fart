@@ -37,14 +37,6 @@ const apiKey = 'AIzaSyDeV0XwbzUBoFuiLkG4DOJIIKjTmbSAnlE';
 const webAppUrl = 'https://script.google.com/macros/s/AKfycbzOmyaMbCWygyI3cDQkNf0LLidH8AitwyDQub6W9xq9o88Tdw0oieNWbkFklAgLyldQ/exec';
 const url = `${webAppUrl}?key=${apiKey}`;
 
-fetch(url)
-  .then(response => response.text())
-  .then(data => {
-    console.log(data); // The response from your web app
-  })
-  .catch(error => {
-    console.error('Error updating cell:', error);
-  });
 
 var fartaudio = document.getElementById("fartsound");
 
@@ -56,12 +48,28 @@ var Jared = 0;
         Chy += 1;
         document.getElementById("counterChyanne").innerText = Chy;
         fartaudio.play();
+        fetch(url)
+              .then(response => response.text())
+              .then(data => {
+                console.log(data); // The response from your web app
+              })
+              .catch(error => {
+                console.error('Error updating cell:', error);
+              });
     } 
 
     function clickJared() {
         Jared += 1;
         document.getElementById("counterJared").innerText = Jared;
         fartaudio.play();
+        fetch(url)
+              .then(response => response.text())
+              .then(data => {
+                console.log(data); // The response from your web app
+              })
+              .catch(error => {
+                console.error('Error updating cell:', error);
+              });
     } 
 
     
