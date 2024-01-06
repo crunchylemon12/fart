@@ -34,20 +34,21 @@
 <script>
 const sheetId = '1D25i_R42My9AqTiCUK2JqNQvU73ITZxxzI7JvHPs1v8';
 const apiKey = 'AIzaSyDeV0XwbzUBoFuiLkG4DOJIIKjTmbSAnlE';
-const webAppUrl = 'https://script.google.com/macros/s/AKfycbzOmyaMbCWygyI3cDQkNf0LLidH8AitwyDQub6W9xq9o88Tdw0oieNWbkFklAgLyldQ/exec';
-const url = `${webAppUrl}?key=${apiKey}`;
+const webAppUrl = 'https://script.google.com/macros/s/AKfycbztnX9iCjrTX2UOvbQ3Z0qH2v9xCyYNg9hYMzuGBuDQbnwSfE4BLd04JhQAnmGFSn1Z/exec';
+const url = `${webAppUrl}?key=${apiKey}&variable=${isChy}`;
 
 
 var fartaudio = document.getElementById("fartsound");
 
 var Chy = 0;
 var Jared = 0;
-
+var isChy = "B1";
 
     function clickChy() {
         Chy += 1;
         document.getElementById("counterChyanne").innerText = Chy;
         fartaudio.play();
+        isChy = "B1";
         fetch(url)
               .then(response => response.text())
               .then(data => {
@@ -62,6 +63,7 @@ var Jared = 0;
         Jared += 1;
         document.getElementById("counterJared").innerText = Jared;
         fartaudio.play();
+        isChy = "B2";
         fetch(url)
               .then(response => response.text())
               .then(data => {
