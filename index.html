@@ -33,16 +33,33 @@
 
 <script>
 const apiKey = 'AIzaSyDeV0XwbzUBoFuiLkG4DOJIIKjTmbSAnlE';
+
+// Const data for sending info
 const webAppUrl = 'https://script.google.com/macros/s/AKfycbwF-osv85R7VgB93_kv8t1mKQy2IHxBf4aVKYPEpRdDP2k9h6BE7XpRPbt5RHjGfZcx/exec';
 const webAppUrl2 = 'https://script.google.com/macros/s/AKfycbxB0TwNXQKBcxff1TgmRzkhcJiM8_LgML_Z7XBIBlgnB-mvPZ_7Nd8lrfRqxZOlB6Hd/exec';
 const url = `${webAppUrl}?key=${apiKey}`;
 const url2 = `${webAppUrl2}?key=${apiKey}`;
 
+// Const data for retrieving info
+const webAppUrl3 = 'https://script.google.com/macros/s/AKfycbzkFq1hZlr-1QEP_cwLFLc3ghPWEJ7Qj_W9tqvbQbqUvP_RBrb3D68Vk27oKu3-euvq/exec';
+const url3 = `${webAppUrl3}?key=${apiKey}`;
 
 var fartaudio = document.getElementById("fartsound");
 
 var Chy = 0;
 var Jared = 0;
+
+     function fetchData(url3, counterId) {
+      fetch(url3)
+        .then(response => response.json())
+        .then(data => {
+          // Update the counter based on the data from Google Sheets
+          document.getElementById(counterId).innerText = data.Chy;
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
 
 
     function clickChy() {
