@@ -49,12 +49,13 @@ var fartaudio = document.getElementById("fartsound");
 var Chy = 0;
 var Jared = 0;
 
-     function fetchData(url3, counterId) {
+     function fetchData() {
       fetch(url3)
         .then(response => response.json())
         .then(data => {
           // Update the counter based on the data from Google Sheets
-          document.getElementById(counterId).innerText = data.Chy;
+          document.getElementById("counterChyanne").innerText = data.Chy;
+          document.getElementById("counterJared").innerText = data.Jared;
         })
         .catch(error => {
           console.error('Error fetching data:', error);
