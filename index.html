@@ -48,11 +48,13 @@ const url2 = `${webAppUrl2}?key=${apiKey}`;
 const webAppUrl3 = 'https://script.google.com/macros/s/AKfycbw99P04AufdfYoz5tXENNmsA_ymD9u4KusFK0CpgxSJuZUS7M8R_qYUad8WqpZS_bov/exec';
 const url3 = `${webAppUrl3}?key=${apiKey}`;
 
+// My variables
 var fartaudio = document.getElementById("fartsound");
 
 var Chy = 0;
 var Jared = 0;
 
+// Functions
      function fetchData() {
       fetch(url3)
         .then(response => response.json())
@@ -60,15 +62,19 @@ var Jared = 0;
           // Update the counter based on the data from Google Sheets
           document.getElementById("counterChyanne").innerText = data.Chy;
           document.getElementById("counterJared").innerText = data.Jared;
+          Chy = data.Chy;
+          Jared = data.Jared;
         })
+        
         .catch(error => {
           console.error('Error fetching data:', error);
         });
     }
 
+fetchData();
 
+// Click functions
     function clickChy() {
-        Chy = data.Chy;
         Chy += 1;
         document.getElementById("counterChyanne").innerText = Chy;
         fartaudio.play();
@@ -83,7 +89,6 @@ var Jared = 0;
     } 
 
     function clickJared() {
-        Jared = data.Jared;
         Jared += 1;
         document.getElementById("counterJared").innerText = Jared;
         fartaudio.play();
