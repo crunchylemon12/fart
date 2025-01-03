@@ -20,7 +20,7 @@ p {text-align: center; font-size: 75px;}
 <p id="counterChyanne" style="font-weight: bold;"> Loading... </p>
 
 <p>
-    <button type="button" onclick="clickChy()" style="font-size: 75px">Fart</button>
+    <button type="button" onclick="playFart()" style="font-size: 75px">Fart (Locked)</button>
 </p>
 
 
@@ -29,7 +29,7 @@ p {text-align: center; font-size: 75px;}
 <p id="counterJared" style="font-weight: bold;"> Loading... </p>
 
 <p>
-    <button type="button" onclick="clickJared()" style="font-size: 75px">Fart</button>
+    <button type="button" onclick="playFart()" style="font-size: 75px">Fart (Locked)</button>
 </p>
 
     
@@ -104,7 +104,9 @@ fetchData();
               });
     } 
 
-    
+    function playFart() {
+        fartaudio.play();
+    }
     
 </script>
 
